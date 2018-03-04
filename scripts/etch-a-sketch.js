@@ -1,39 +1,8 @@
-/*  TO DO / HELPFUL PROPERTIES
-    -- need to create a div for each grid block using js.
-    -- need to create a grid with js to satisify the project.
-    -- set BORDERS and MARGINS to 0?
-    -- can target the #container div inside index.html to append all the child nodes.
-    -- need to create variable grid setup so that a user can enter any number between x and y to create a grid with those square dimensions, but using the same pixel area (960x960 say).
-    -- the new grid should generate in the same total space as before (e.g. 960px wide) to create a new sketch pad
-    -- need to set a div:hover action to change the content/background-color.
-    -- need to use event listeners to look for the hover action start point in order to trigger the change.
-    -- change the color of the divs by changing the css class.
-    -- need to add a button that resets the grid.
-    -- push to github
-
-    ELEMENTS:
-    <div>
-    <button>
-
-    PROPERTIES:
-    grid-template-columns
-    grid-template-rows
-    grid-auto-columns
-    grid-auto-rows
-    grid-auto-flow
-    grid-row
-    grid-column
-    grid-row-gap
-    grid-column-gap
-    x:hover
-    background-color
-
-    FUNCTIONS:
-    repeat()
-
-    DATA TYPES:
-    <flex> -- 1fr, 2fr, etc.
-*/
+// just a quick title
+const title = document.querySelector('.title');
+let header = document.createElement('h1');
+header.textContent = 'Etch-a-Sketch';
+title.appendChild(header);
 
 // can target the #container div inside index.html to append all the child nodes
 const container = document.querySelector('.container');
@@ -88,36 +57,29 @@ function clearGrid() {
 
 function resetGrid() {
   clearGrid();
-  setGrid(10, 10);
+  setGrid(25, 25);
 }
+
+resetGrid();
 
 // need to create a div for each grid block using js
 function setGrid(width, height) {
   clearGrid();
 
+  let blockWidth = 500 / width;
+  let blockHeight = 500 / height;
+
   for (i = 0; i < (width * height); i++) {
     let block = document.createElement('div');
     block.classList.add('block');
+    block.style.width = blockWidth + 'px';
+    block.style.height = blockHeight + 'px';
+
+    // need to add a hover listener to change the class of my block divs from clear to filled
     block.addEventListener('mouseover', (e) => {
       block.classList.add('block-filled');
     });
+
     container.appendChild(block);
-    // let divList = container.childNodes;
-  }
-
-
-/*
-  for (i = 0; i < divList.length; i++) {
-    // need to change the size of the blocks
   }
 }
-*/
-
-/*.block {
-  width: 5px;
-  height: 5px;
-  float: left;
-  background-color: white;
-}*/
-
-// need to add a hover listener to change the class of my block divs from clear to filled
